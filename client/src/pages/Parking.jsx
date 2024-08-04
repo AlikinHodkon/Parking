@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ParkingPlace from "../components/ParkingPlace";
 import axios from 'axios'
+import Footer from "../components/Footer";
 
 export default function Parking() {
   const [parkingPlaces, setParkingPlaces] = useState([]);
@@ -18,6 +19,7 @@ export default function Parking() {
       <div className="flex flex-wrap ml-5 mr-5 justify-between">
         {parkingPlaces.map((place) => <ParkingPlace data={place} fetchParking={fetchParking} key={place.id} />)}
       </div>
+      <Footer />
     </div>
   )
 }

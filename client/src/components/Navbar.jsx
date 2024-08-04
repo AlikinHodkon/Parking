@@ -7,7 +7,7 @@ export default function Navbar() {
                 <li><a>Benefits</a></li>
                 <li><a href="/parking">Parking</a></li>
                 <li><a>About us</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href={localStorage.getItem("login") ? "/profile" : "/login"}>{localStorage.getItem("login") ? localStorage.getItem("login") : "Login"}</a></li>
                 </ul>
         </nav>
     </div>
