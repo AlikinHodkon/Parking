@@ -1,6 +1,4 @@
 const db = require('../db');
-const bcrypt = require('bcrypt');
-const uuid = require('uuid');
 
 class parkingController{
     async getParking(req, res){
@@ -25,18 +23,6 @@ class parkingController{
             const timeTo =date+" "+to+":00"+tz;
             await db.query(`UPDATE parking SET disabled = true, timefrom = $1, timeto = $2 WHERE id = $3`, [timeFrom, timeTo, id]);
             res.json(id);
-        } catch (error) {
-            
-        }
-    }
-
-    async registration(req, res){
-        try {
-            const {login, password, email, carNumber} = req.body;
-            const hashpassword = await bcrypt.hash(password, 5);
-            const activationLink = uuid.v4();
-            await db.query(`INSERT INTO client (login, password, email, activationlink, carnumber) VALUES ($1, $2, $3, $4, $5)`, [login, hashpassword, email, activationLink, carNumber]);
-            res.json({login, email, carNumber});
         } catch (error) {
             
         }

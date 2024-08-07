@@ -3,6 +3,9 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import "../styles/login.css"
 import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { registration } from "../reducers/authReducers"
+import { useNavigate } from "react-router-dom"
 
 export default function Registration() {
 
@@ -11,10 +14,12 @@ export default function Registration() {
     const [email, setEmail] = useState("");
     const [car, setCar] = useState("");
     const [similar, setSimilar] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function handleClick(){
         axios.post("http://localhost:5000/api/registration", {"login": login, "password": password, "email": email, "carNumber": car}).then((response) => {
-            localStorage.setItem("login", response.data.login);
+            dispatch(registration, {"login": response.data.login, "email": response.data.email, "isActivated": false, "carNumber": response.data.carnumber});
         });
     }
 
@@ -36,7 +41,7 @@ export default function Registration() {
                     <input name="email" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Email" />
                     <p>Your car number</p>
                     <input name="car" onChange={(e) => setCar(e.target.value)} type="text" placeholder="Car number" />
-                    <input onClick={(e) => {e.preventDefault(); if (similar) handleClick()}} type="submit" value="Submit" />
+                    <input onClick={(e) => {e.preventDefault(); if (similar) {handleClick(); navigate('/profile')}}} type="submit" value="Submit" />
                 </form>
             </div>
             <Footer />
