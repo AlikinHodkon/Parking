@@ -18,11 +18,24 @@ class parkingController{
 
     async booking(req, res){
         try {
-            const {id, date, from, to, tz} = req.body; 
+            const {id, client_id, date, from, to, tz} = req.body; 
+            if (await db.query(`SELECT * FROM parking WHERE client_id = $1`, [client_id])){
+                return;
+            }
             const timeFrom = date+" "+from+":00"+tz;
             const timeTo =date+" "+to+":00"+tz;
-            await db.query(`UPDATE parking SET disabled = true, timefrom = $1, timeto = $2 WHERE id = $3`, [timeFrom, timeTo, id]);
+            await db.query(`UPDATE parking SET disabled = true, timefrom = $1, timeto = $2, client_id = $3 WHERE id = $4`, [timeFrom, timeTo, client_id, id]);
             res.json(id);
+        } catch (error) {
+            
+        }
+    }
+
+    async getUserDate(req, res){
+        try {
+            const {id} = req.params;
+            const user = await db.query(`SELECT * from parking WHERE client_id = $1`, [id]);
+            res.json(user.rows);
         } catch (error) {
             
         }

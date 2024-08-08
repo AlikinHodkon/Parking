@@ -1,0 +1,27 @@
+{
+    "navbar": {
+        "parking": "Parking",
+        "login": "Sing in"
+    },
+    "title": {
+        "welcome": "Welcome to",
+        "slogan": "Choose your place"
+    },
+    "parking": {
+        "header": "Choose a place",
+        "from": "From",
+        "to": "To",
+        "statusFree": "Free",
+        "StatusBooked": "Booked"
+    },
+    "profile": {
+        "login": "Login",
+        "email": "Email",
+        "carNumber": "Car number",
+        "isActivated": "Activated",
+        "active": "Active booking place",
+        "from": "From",
+        "to": "To",
+        "bills": "Bills"
+    }
+}

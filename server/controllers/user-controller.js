@@ -18,9 +18,8 @@ class UserController{
     async login(req, res){
         try {
             const {login, password} = req.body;
-            const hashpassword = await bcrypt.hash(password, 5);
-            const userData = await db.query(`SELECT * FROM user WHERE login = $1`, [login]);
-            if (userData.rows[0].login === login && userData.rows[0].password === hashpassword){
+            const userData = await db.query(`SELECT * FROM client WHERE login = $1`, [login]);
+            if (userData.rows[0].login === login && bcrypt.compare(password, userData.rows[0].password)){
                 res.json(userData.rows);
             }
         } catch (error) {

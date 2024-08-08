@@ -16,7 +16,7 @@ export default function Login() {
 
   function handleClick(){
     axios.post("http://localhost:5000/api/login", {"login": login, "password": password}).then((response) => {
-      dispatch(signIn, {"login": response.data.login, "email": response.data.email, "isActivated": response.data.isactivated, "carNumber": response.data.carnumber});
+      dispatch(signIn({"id": response.data[0].id, "login": response.data[0].login, "email": response.data[0].email, "isActivated": response.data[0].isactivated, "carNumber": response.data[0].carnumber}));
     })
   }
 

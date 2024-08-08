@@ -5,6 +5,7 @@ const userController = require("./controllers/user-controller");
 const router = new Router();
 
 router.get("/parking", parkingController.getParking);
+router.get("/userParking/:id", parkingController.getUserDate);
 router.post("/booking", parkingController.booking);
 router.post("/registration", userController.registration);
 router.post("/login", userController.login);

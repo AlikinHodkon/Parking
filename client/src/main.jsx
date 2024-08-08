@@ -3,9 +3,13 @@ import App from './App.jsx'
 import { Provider } from "react-redux"
 import '../src/styles/index.css'
 import store from './store.js'
+import React from 'react'
+import "./i18n.js"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
 )

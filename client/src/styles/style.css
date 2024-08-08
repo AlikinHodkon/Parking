@@ -58,6 +58,29 @@ nav ul li a{
     font-family: "Poppins", sans-serif
 }
 
+nav ul li button{
+    height: 100%;
+    align-items: center;
+    display: flex;
+    padding: 0 30px;
+}
+
+nav ul li select{
+    height: 100%;
+    align-items: center;
+    display: flex;
+    padding: 0 30px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif
+}
+
+#logout{
+    background: url("../images/exitLogo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 nav li:first-child{
     margin-right: auto;
 }
