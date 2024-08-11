@@ -18,7 +18,7 @@ export default function Parking() {
     <div>
       <Navbar />
       <h1 className="text-center text-[32px] font-semibold">{t("parking.header")}</h1>
-      <div className="flex flex-wrap ml-5 mr-5 justify-between">
+      <div className="flex flex-wrap ml-5 mr-5 mb-5 justify-between">
         {parkingPlaces.map((place) => <ParkingPlace data={place} fetchParking={fetchParking} key={place.id} />)}
       </div>
       <Footer />

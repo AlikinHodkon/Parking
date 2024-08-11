@@ -8,20 +8,17 @@ export default function ParkingPlace({data, fetchParking}) {
   const [to, setTo] = useState("");
   const {t} = useTranslation();
   const tz = new Date().getHours() - new Date().getUTCHours();
-  function convert(n) {
-    n = ""+n;
-    if (n[0] === "-"){
-      if (n.substring(1).length === 1) n = '-0'+n.substring(1);
-    }
-    if (n.length === 1) n = '0' + n;
-    return n
-  }
   let timeFrom = (""+data.timefrom).substring(11, 13);
   timeFrom = parseInt(timeFrom)+tz;
   let timeTo = (""+data.timeto).substring(11, 13);
   timeTo = parseInt(timeTo)+tz;
   async function handleClick(id) {
-    axios.post('http://localhost:5000/api/booking', {"id": id, "client_id": localStorage.getItem("id"), "date": date, "from": from, "to": to, "tz": (tz > 0 ? "+"+convert(tz) : convert(tz))}).then(() => fetchParking());
+    const timeFrom = date+" "+from+":00"+tz;
+    const timeTo =date+" "+to+":00"+tz;
+    let total = (new Date(timeTo).getHours()-new Date(timeFrom).getHours())*data.price;
+    if ((new Date(timeTo).getMinutes()-new Date(timeFrom).getMinutes()) !== 0) total += data.price;
+    axios.post("http://localhost:5000/api/userBills", {"client_id": localStorage.getItem('id'), "total": total, "timeFrom": timeFrom, "timeTo": timeTo});
+    axios.post('http://localhost:5000/api/booking', {"id": id, "client_id": localStorage.getItem("id"), "timeFrom": timeFrom, "timeTo": timeTo}).then(() => fetchParking());
   }
 
   return (

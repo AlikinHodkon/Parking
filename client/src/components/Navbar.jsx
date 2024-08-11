@@ -17,7 +17,7 @@ export default function Navbar() {
             <ul>
                 <li><a href="/">Your<span className="pinkText">Place</span></a></li>
                 <li>
-                  <select className="bg-transparent outline-none text-white" onChange={(e) => i18n.changeLanguage(e.target.value)}>
+                  <select className="bg-transparent outline-none text-white" value={localStorage.getItem('lang')} onChange={(e) => {i18n.changeLanguage(e.target.value); localStorage.setItem('lang', e.target.value)}}>
                   {Object.keys(lngs).map((lng) => (
                     <option key={lng} className={`${i18n.resolvedLanguage === lng ? 'font-bold' : 'font-normal'} text-black`} value={lng}>
                       {lngs[lng].nativeName}

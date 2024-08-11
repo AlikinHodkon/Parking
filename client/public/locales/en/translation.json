@@ -12,7 +12,7 @@
         "from": "From",
         "to": "To",
         "statusFree": "Free",
-        "StatusBooked": "Booked"
+        "statusBooked": "Booked"
     },
     "profile": {
         "login": "Login",
